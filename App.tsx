@@ -10,11 +10,7 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   ImageBackground,
   Button,
@@ -22,39 +18,15 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const SectionLogin: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const SectionLogin: React.FC = () => {
   return (
-    <View style={{
-      marginTop: 100,
-      width: 250,
-      backgroundColor: "white",
-      paddingTop: 20, paddingBottom: 20,
-      paddingLeft: 5, paddingRight: 5,
-      }}>
-      <TextInput
-        style={{margin: 10, borderColor: "black", borderWidth: 1, borderRadius: 10}}
-        placeholder="Username"
-      />
-      <TextInput
-        style={{margin: 10, borderColor: "black", borderWidth: 1, borderRadius: 10}}
-        placeholder="Password"
-      />
-      <View style={{width:100, alignSelf: "center"}}>
-        <Button
-          style={{marginLeft:16}}
-          title="Submit"
-        />
+    <View style={styles.loginWrapper}>
+      <TextInput style={styles.textInput} placeholder="Username" />
+      <TextInput style={styles.textInput} placeholder="Password" />
+      <View style={styles.btnSubmitWrapper}>
+        <Button title="Submit" />
       </View>
     </View>
   );
@@ -63,48 +35,64 @@ const SectionLogin: React.FC<{
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-      <View style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          flex: 1
-        }}>
-        <View style={{ zIndex: 2, top:0, left:0, height:200, width:"100%", backgroundColor: "red", position:"absolute" }} >
-          
-        <ImageBackground source={require('./img/banner.jpg')} resizeMode="cover" style={{flex:1}}></ImageBackground>
-
-        </View>
-        <View style={{marginTop:200, flex: 4, backgroundColor: "#ccc", alignItems: "center" }} >
-          <SectionLogin />
-        </View>
-        
+    <View
+      style={{
+        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        flex: 1,
+      }}>
+      <View style={styles.bannerWrapper}>
+        <ImageBackground
+          source={require('./img/banner.jpg')}
+          resizeMode="cover"
+          style={styles.imageBackground}
+        />
       </View>
+      <View style={styles.sectionWrapper}>
+        <SectionLogin />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  textInput: {
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  btnSubmitWrapper: {
+    width: 100,
+    alignSelf: 'center',
+  },
+  loginWrapper: {
+    marginTop: 100,
+    width: 250,
+    backgroundColor: 'white',
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+
+  bannerWrapper: {
+    zIndex: 2,
+    top: 0,
+    left: 0,
+    height: 200,
+    width: '100%',
+    backgroundColor: 'red',
+    position: 'absolute',
+  },
+  imageBackground: {
     flex: 1,
-    padding: 20,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  sectionWrapper: {
+    marginTop: 200,
+    flex: 4,
+    backgroundColor: '#ccc',
+    alignItems: 'center',
   },
 });
 
