@@ -15,6 +15,9 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
+  ImageBackground,
+  Button,
   useColorScheme,
   View,
 } from 'react-native';
@@ -27,30 +30,32 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section: React.FC<{
+const SectionLogin: React.FC<{
   title: string;
 }> = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={{
+      marginTop: 100,
+      width: 250,
+      backgroundColor: "white",
+      paddingTop: 20, paddingBottom: 20,
+      paddingLeft: 5, paddingRight: 5,
+      }}>
+      <TextInput
+        style={{margin: 10, borderColor: "black", borderWidth: 1, borderRadius: 10}}
+        placeholder="Username"
+      />
+      <TextInput
+        style={{margin: 10, borderColor: "black", borderWidth: 1, borderRadius: 10}}
+        placeholder="Password"
+      />
+      <View style={{width:100, alignSelf: "center"}}>
+        <Button
+          style={{marginLeft:16}}
+          title="Submit"
+        />
+      </View>
     </View>
   );
 };
@@ -63,37 +68,27 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+      <View style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          flex: 1
+        }}>
+        <View style={{ flex: 2, backgroundColor: "red" }} >
+          
+        <ImageBackground source={require('./img/banner.jpg')} resizeMode="cover" style={{flex:1}}></ImageBackground>
+
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <View style={{ flex: 4, backgroundColor: "green", alignItems: "center" }} >
+          <SectionLogin />
+        </View>
+      </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
