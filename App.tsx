@@ -72,14 +72,15 @@ const App = () => {
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
           flex: 1
         }}>
-        <View style={{ flex: 2, backgroundColor: "red" }} >
+        <View style={{ zIndex: 2, top:0, left:0, height:200, width:"100%", backgroundColor: "red", position:"absolute" }} >
           
         <ImageBackground source={require('./img/banner.jpg')} resizeMode="cover" style={{flex:1}}></ImageBackground>
 
         </View>
-        <View style={{ flex: 4, backgroundColor: "#ccc", alignItems: "center" }} >
+        <View style={{marginTop:200, flex: 4, backgroundColor: "#ccc", alignItems: "center" }} >
           <SectionLogin />
         </View>
+        
       </View>
   );
 };
