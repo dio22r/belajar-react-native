@@ -77,7 +77,7 @@ const App = () => {
         <ImageBackground source={require('./img/banner.jpg')} resizeMode="cover" style={{flex:1}}></ImageBackground>
 
         </View>
-        <View style={{ flex: 4, backgroundColor: "green", alignItems: "center" }} >
+        <View style={{ flex: 4, backgroundColor: "#ccc", alignItems: "center" }} >
           <SectionLogin />
         </View>
       </View>
