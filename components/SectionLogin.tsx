@@ -2,19 +2,38 @@ import React, {useState} from 'react';
 import {StyleSheet, TextInput, Button, View, Text} from 'react-native';
 
 const SectionLogin: React.FC = () => {
-  let [count, setCount] = useState(0);
+  let [username, setUsername] = useState('');
+  let [password, setPassword] = useState('');
+  let [boxstyle, setBoxstyle] = useState(styles.textInfo);
+
+  let [showtext, setShowtext] = useState('Silahkan Login');
+
   function greeting() {
-    setCount(count + 1);
+    if (username === 'conditionalrendering' && password === 'abc123') {
+      setShowtext('Selamat Datang, Anda Berhasil Login');
+      setBoxstyle(styles.textSuccess);
+    } else {
+      setShowtext('Maaf Username dan Password Salah!');
+      setBoxstyle(styles.textFail);
+    }
   }
 
   return (
     <View style={styles.loginWrapper}>
-      <TextInput style={styles.textInput} placeholder="Username" />
-      <TextInput style={styles.textInput} placeholder="Password" />
+      <TextInput
+        onChangeText={text => setUsername(text)}
+        style={styles.textInput}
+        placeholder="Username"
+      />
+      <TextInput
+        onChangeText={text => setPassword(text)}
+        style={styles.textInput}
+        placeholder="Password"
+      />
       <View style={styles.btnSubmitWrapper}>
         <Button onPress={greeting} title="Submit" />
       </View>
-      <Text style={styles.textCount}>You tap: {count} times</Text>
+      <Text style={boxstyle}>{showtext}</Text>
     </View>
   );
 };
@@ -39,9 +58,27 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
   },
-  textCount: {
+  textInfo: {
     borderRadius: 10,
-    backgroundColor: 'yellow',
+    backgroundColor: 'cyan',
+    padding: 10,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginTop: 15,
+  },
+  textSuccess: {
+    borderRadius: 10,
+    backgroundColor: 'green',
+    padding: 10,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginTop: 15,
+  },
+  textFail: {
+    borderRadius: 10,
+    backgroundColor: 'red',
     padding: 10,
     textAlign: 'center',
     borderWidth: 1,
