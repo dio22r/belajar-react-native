@@ -9,28 +9,10 @@
  */
 
 import React from 'react';
-import {
-  StyleSheet,
-  TextInput,
-  ImageBackground,
-  Button,
-  useColorScheme,
-  View,
-} from 'react-native';
 
+import {StyleSheet, ImageBackground, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-const SectionLogin: React.FC = () => {
-  return (
-    <View style={styles.loginWrapper}>
-      <TextInput style={styles.textInput} placeholder="Username" />
-      <TextInput style={styles.textInput} placeholder="Password" />
-      <View style={styles.btnSubmitWrapper}>
-        <Button title="Submit" />
-      </View>
-    </View>
-  );
-};
+import SectionLogin from './components/SectionLogin';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -43,7 +25,7 @@ const App = () => {
       }}>
       <View style={styles.bannerWrapper}>
         <ImageBackground
-          source={require('./img/banner.jpg')}
+          source={require('./img/banner.png')}
           resizeMode="cover"
           style={styles.imageBackground}
         />
@@ -56,26 +38,6 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  textInput: {
-    margin: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  btnSubmitWrapper: {
-    width: 100,
-    alignSelf: 'center',
-  },
-  loginWrapper: {
-    marginTop: 100,
-    width: 250,
-    backgroundColor: 'white',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 5,
-    paddingRight: 5,
-  },
-
   bannerWrapper: {
     zIndex: 2,
     top: 0,
