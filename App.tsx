@@ -1,61 +1,27 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * For React Navigation
  *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
+ * docs:
+ * https://reactnavigation.org/docs/getting-started#installing-dependencies-into-a-bare-react-native-project
  *
  * @format
  */
 
-import React from 'react';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {StyleSheet, ImageBackground, useColorScheme, View} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import SectionLogin from './components/SectionLogin';
-
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function App() {
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        flex: 1,
-      }}>
-      <View style={styles.bannerWrapper}>
-        <ImageBackground
-          source={require('./img/banner.png')}
-          resizeMode="cover"
-          style={styles.imageBackground}
-        />
-      </View>
-      <View style={styles.sectionWrapper}>
-        <SectionLogin />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="Login" component={LoginPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  bannerWrapper: {
-    zIndex: 2,
-    top: 0,
-    left: 0,
-    height: 200,
-    width: '100%',
-    backgroundColor: 'red',
-    position: 'absolute',
-  },
-  imageBackground: {
-    flex: 1,
-  },
-  sectionWrapper: {
-    marginTop: 200,
-    flex: 4,
-    backgroundColor: '#ccc',
-    alignItems: 'center',
-  },
-});
-
-export default App;
+}
