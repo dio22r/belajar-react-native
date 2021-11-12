@@ -8,26 +8,27 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 
-import {StyleSheet, useColorScheme, View, Button} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {StyleSheet, View, Button, Text} from 'react-native';
 
-const HomePage: React.FC<any> = ({navigation}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const HomePage: React.FC = () => {
+  let [text, setText] = useState('test');
+
+  function pressbutton() {
+    setText('Pressed');
+  }
 
   return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        flex: 1,
-      }}>
-      <Button
-        title="Login Page"
-        onPress={() => navigation.navigate('Login')}
-      />
+    <View style={{flex:1, backgroundColor:'red'}}>
+      <View style={{flex:5, backgroundColor:'yellow'}} >
+
+      </View>
+      <View style={{width: 200, flex:1, backgroundColor:'blue',zIndex:2}}>
+        <Button title="Login" onPress={pressbutton} />
+      </View>
+      
+      <Text style={{flex: 1}}>{text}</Text>
     </View>
   );
 };

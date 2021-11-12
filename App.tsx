@@ -13,9 +13,9 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-export default function App() {
-  const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -25,3 +25,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default App;
