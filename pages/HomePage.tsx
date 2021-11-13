@@ -11,34 +11,27 @@
 import React, {useState} from 'react';
 
 import {StyleSheet, View, Button, Text} from 'react-native';
+import TodoCard from '../components/TodoCard';
 
 const HomePage: React.FC = () => {
-  let [text, setText] = useState('test');
-
-  function pressbutton() {
-    setText('Pressed');
-  }
 
   return (
-    <View style={{flex:1, backgroundColor:'red'}}>
-      <View style={{flex:5, backgroundColor:'yellow'}} ></View>
-      <View style={{width: 200, flex: 1, alignSelf: 'center'}}>
-        <Button title="Login" onPress={pressbutton} />
-      </View>
-      <Text style={{flex: 1}}>{text}</Text>
+    <View style={{flex:1}}>
+      <Text style={styles.headerText}>Todo Belajar React</Text>
+      <TodoCard name="Belajar React." completed={true} />
+      <TodoCard name="Belajar React State." completed={true} />
+      <TodoCard name="Belajar React Navigation." completed={true} />
+      <TodoCard name="Belajar React Component Props." completed={false} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  bannerWrapper: {
-    zIndex: 2,
-    top: 0,
-    left: 0,
-    height: 200,
-    width: '100%',
-    backgroundColor: 'red',
-    position: 'absolute',
+  headerText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 20,
   },
 });
 
