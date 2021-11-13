@@ -12,22 +12,20 @@ import React, {useState} from 'react';
 
 import {StyleSheet, View, Button, Text} from 'react-native';
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = ({navigation}) => {
   let [text, setText] = useState('test');
 
   function pressbutton() {
     setText('Pressed');
+    navigation.navigate('Login');
   }
 
   return (
     <View style={{flex:1, backgroundColor:'red'}}>
-      <View style={{flex:5, backgroundColor:'yellow'}} >
-
-      </View>
-      <View style={{width: 200, flex:1, backgroundColor:'blue',zIndex:2}}>
+      <View style={{flex:5, backgroundColor:'yellow'}} ></View>
+      <View style={{width: 200, flex: 1, alignSelf: 'center'}}>
         <Button title="Login" onPress={pressbutton} />
       </View>
-      
       <Text style={{flex: 1}}>{text}</Text>
     </View>
   );
