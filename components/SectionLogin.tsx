@@ -1,7 +1,9 @@
+import {useNavigation} from '@react-navigation/core';
 import React, {useState} from 'react';
 import {StyleSheet, TextInput, Button, View, Text} from 'react-native';
 
 const SectionLogin: React.FC = () => {
+  let navigation = useNavigation();
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
   let [boxstyle, setBoxstyle] = useState(styles.textInfo);
@@ -9,9 +11,10 @@ const SectionLogin: React.FC = () => {
   let [showtext, setShowtext] = useState('Silahkan Login');
 
   function greeting() {
-    if (username === 'conditionalrendering' && password === 'abc123') {
+    if (username === '' && password === '') {
       setShowtext('Selamat Datang, Anda Berhasil Login');
       setBoxstyle(styles.textSuccess);
+      navigation.navigate('Home');
     } else {
       setShowtext('Maaf Username dan Password Salah!');
       setBoxstyle(styles.textFail);

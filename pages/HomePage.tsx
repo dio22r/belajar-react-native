@@ -12,12 +12,11 @@ import React, {useState} from 'react';
 
 import {StyleSheet, View, Button, Text} from 'react-native';
 
-const HomePage: React.FC = ({navigation}) => {
+const HomePage: React.FC = () => {
   let [text, setText] = useState('test');
 
   function pressbutton() {
     setText('Pressed');
-    navigation.navigate('Login');
   }
 
   return (
