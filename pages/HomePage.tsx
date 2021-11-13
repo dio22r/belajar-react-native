@@ -8,15 +8,14 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React from 'react';
 
-import {StyleSheet, View, Button, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import TodoCard from '../components/TodoCard';
 
 const HomePage: React.FC = () => {
-
   return (
-    <View style={{flex:1}}>
+    <View style={{flex: 1}}>
       <Text style={styles.headerText}>Todo Belajar React</Text>
       <TodoCard name="Belajar React." completed={true} />
       <TodoCard name="Belajar React State." completed={true} />
