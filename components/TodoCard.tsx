@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
-type TodoCardProps = {
+export interface TodoCardProps {
   name: string;
   completed: boolean;
-};
+}
 
 const TodoCard: React.FC<TodoCardProps> = props => {
   let [checked, setChecked] = useState(props.completed);
