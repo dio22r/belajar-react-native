@@ -12,6 +12,16 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import TodoCard from '../components/TodoCard';
 
+type todoJson = {
+  title: string;
+  completed: boolean;
+};
+
+export class axiosResponse {
+  data: Array<todoJson>;
+  status: boolean;
+}
+
 const HomePage: React.FC = () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -19,8 +29,10 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(baseUrl);
-      setApiData(response.data.slice(0, 10));
+      axios.get<axiosResponse>(baseUrl).then(response => {
+        response = Object.assign(new axiosResponse(), response);
+      });
+      setApiData(response.data);
     };
 
     fetchUser();
