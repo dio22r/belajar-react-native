@@ -4,11 +4,11 @@ import {StyleSheet, TextInput, Button, View, Text} from 'react-native';
 
 const SectionLogin: React.FC = () => {
   let navigation = useNavigation();
-  let [username, setUsername] = useState('');
-  let [password, setPassword] = useState('');
-  let [boxstyle, setBoxstyle] = useState(styles.textInfo);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [boxstyle, setBoxstyle] = useState(styles.textInfo);
 
-  let [showtext, setShowtext] = useState('Silahkan Login');
+  const [showtext, setShowtext] = useState('Silahkan Login');
 
   function greeting() {
     if (username === '' && password === '') {

@@ -7,25 +7,39 @@
  *
  * @format
  */
-
-import React from 'react';
-
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import TodoCard from '../components/TodoCard';
 
 const HomePage: React.FC = () => {
+  const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
+
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(baseUrl);
+      setApiData(response.data.slice(0, 10));
+    };
+
+    fetchUser();
+  }, [baseUrl]);
+
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <Text style={styles.headerText}>Todo Belajar React</Text>
-      <TodoCard name="Belajar React." completed={true} />
-      <TodoCard name="Belajar React State." completed={true} />
-      <TodoCard name="Belajar React Navigation." completed={true} />
-      <TodoCard name="Belajar React Component Props." completed={false} />
+      {apiData.map(todo => (
+        <TodoCard name={todo.title} completed={todo.completed} />
+      ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   headerText: {
     textAlign: 'center',
     fontSize: 20,

@@ -14,7 +14,7 @@ import {StyleSheet, ImageBackground, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SectionLogin from '../components/SectionLogin';
 
-const LoginPage: React.FC = ({navigation}) => {
+const LoginPage: React.FC = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
@@ -31,7 +31,7 @@ const LoginPage: React.FC = ({navigation}) => {
         />
       </View>
       <View style={styles.sectionWrapper}>
-        <SectionLogin navigation={navigation} />
+        <SectionLogin />
       </View>
     </View>
   );
