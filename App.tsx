@@ -11,6 +11,9 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import {store} from './src/app/store';
+import {Provider} from 'react-redux';
+
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 
@@ -18,12 +21,14 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="Login" component={LoginPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="Login" component={LoginPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

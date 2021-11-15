@@ -2,8 +2,13 @@ import {useNavigation} from '@react-navigation/core';
 import React, {useState} from 'react';
 import {StyleSheet, TextInput, Button, View, Text} from 'react-native';
 
+import {useDispatch} from 'react-redux';
+import {setLogin} from '../src/features/auth/login';
+
 const SectionLogin: React.FC = () => {
   let navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [boxstyle, setBoxstyle] = useState(styles.textInfo);
@@ -11,9 +16,10 @@ const SectionLogin: React.FC = () => {
   const [showtext, setShowtext] = useState('Silahkan Login');
 
   function greeting() {
-    if (username === '' && password === '') {
+    if (username !== '' && password === 'abc123') {
       setShowtext('Selamat Datang, Anda Berhasil Login');
       setBoxstyle(styles.textSuccess);
+      dispatch(setLogin(username));
       navigation.navigate('Home');
     } else {
       setShowtext('Maaf Username dan Password Salah!');

@@ -10,15 +10,22 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
+
+import {RootState} from '../src/app/store';
+import {useSelector} from 'react-redux';
+
 import TodoCard from '../components/TodoCard';
 
 export interface todoJson {
+  userId: number;
+  id: number;
   title: string;
   completed: boolean;
 }
 
 const HomePage: React.FC = () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
+  const username = useSelector((state: RootState) => state.login.username);
 
   const [apiData, setApiData] = useState<todoJson[]>([]);
 
@@ -36,6 +43,7 @@ const HomePage: React.FC = () => {
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.headerText}>Todo Belajar React</Text>
+        <Text style={styles.headerText}>Welcom! {username}</Text>
         {apiData.map(todo => (
           <TodoCard name={todo.title} completed={todo.completed} />
         ))}

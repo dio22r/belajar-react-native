@@ -14,7 +14,7 @@ const TodoCard: React.FC<TodoCardProps> = props => {
   }
 
   return (
-    <View style={styles.checkboxContainer}>
+    <View style={styles.checkboxContainer} key={props.key}>
       <TouchableOpacity
         style={checked ? styles.checkboxChecked : styles.checkbox}
         onPress={toggle}></TouchableOpacity>
