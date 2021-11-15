@@ -9,30 +9,24 @@
  */
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import TodoCard from '../components/TodoCard';
 
-type todoJson = {
+export interface todoJson {
   title: string;
   completed: boolean;
-};
-
-export class axiosResponse {
-  data: Array<todoJson>;
-  status: boolean;
 }
 
 const HomePage: React.FC = () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
-  const [apiData, setApiData] = useState([]);
+  const [apiData, setApiData] = useState<todoJson[]>([]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      axios.get<axiosResponse>(baseUrl).then(response => {
-        response = Object.assign(new axiosResponse(), response);
+      axios.get<todoJson[]>(baseUrl).then(response => {
+        setApiData(response.data);
       });
-      setApiData(response.data);
     };
 
     fetchUser();
@@ -40,10 +34,12 @@ const HomePage: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Todo Belajar React</Text>
-      {apiData.map(todo => (
-        <TodoCard name={todo.title} completed={todo.completed} />
-      ))}
+      <ScrollView>
+        <Text style={styles.headerText}>Todo Belajar React</Text>
+        {apiData.map(todo => (
+          <TodoCard name={todo.title} completed={todo.completed} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
