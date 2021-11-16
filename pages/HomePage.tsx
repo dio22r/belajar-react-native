@@ -7,14 +7,15 @@
  *
  * @format
  */
-import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+// import axios from 'axios';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 
 import {RootState} from '../src/app/store';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import TodoCard from '../components/TodoCard';
+import {fetchTodos} from '../src/features/reducer/todos';
 
 export interface todoJson {
   userId: number;
@@ -24,28 +25,29 @@ export interface todoJson {
 }
 
 const HomePage: React.FC = () => {
-  const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
   const username = useSelector((state: RootState) => state.login.username);
+  const todos = useSelector((state: RootState) => state.todos.todos);
+  const isLoading = useSelector((state: RootState) => state.todos.isLoading);
 
-  const [apiData, setApiData] = useState<todoJson[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      axios.get<todoJson[]>(baseUrl).then(response => {
-        setApiData(response.data);
-      });
-    };
-
-    fetchUser();
-  }, [baseUrl]);
+    dispatch(fetchTodos());
+  }, [username]);
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.headerText}>Todo Belajar React</Text>
-        <Text style={styles.headerText}>Welcom! {username}</Text>
-        {apiData.map(todo => (
-          <TodoCard name={todo.title} completed={todo.completed} />
+        <Text style={styles.headerText}>Selamat Datang! {username}</Text>
+        {isLoading && <Text style={styles.loading}>Loading . . .</Text>}
+        {todos.map((todo, index) => (
+          <TodoCard
+            key={index}
+            id={todo.id}
+            name={todo.title}
+            completed={todo.completed}
+          />
         ))}
       </ScrollView>
     </View>
@@ -61,6 +63,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     margin: 20,
+  },
+  loading: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+    padding: 5,
+    backgroundColor: 'green',
+    color: 'white',
   },
 });
 

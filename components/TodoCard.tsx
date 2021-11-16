@@ -1,24 +1,33 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {updateTodos} from '../src/features/reducer/todos';
 
 export interface TodoCardProps {
+  id: number;
   name: string;
   completed: boolean;
 }
 
 const TodoCard: React.FC<TodoCardProps> = props => {
-  let [checked, setChecked] = useState(props.completed);
+  const dispatch = useDispatch();
 
-  function toggle() {
-    setChecked(!checked);
+  function toggle(id: number) {
+    dispatch(updateTodos(id));
   }
 
   return (
-    <View style={styles.checkboxContainer} key={props.key}>
+    <View style={styles.checkboxContainer}>
       <TouchableOpacity
-        style={checked ? styles.checkboxChecked : styles.checkbox}
-        onPress={toggle}></TouchableOpacity>
-      <Text style={styles.label} onPress={toggle}>
+        style={props.completed ? styles.checkboxChecked : styles.checkbox}
+        onPress={() => {
+          toggle(props.id);
+        }}></TouchableOpacity>
+      <Text
+        style={styles.label}
+        onPress={() => {
+          toggle(props.id);
+        }}>
         {props.name}
       </Text>
     </View>

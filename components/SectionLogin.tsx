@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {StyleSheet, TextInput, Button, View, Text} from 'react-native';
 
 import {useDispatch} from 'react-redux';
-import {setLogin} from '../src/features/auth/login';
+import {setLogin} from '../src/features/reducer/login';
 
 const SectionLogin: React.FC = () => {
   let navigation = useNavigation();
