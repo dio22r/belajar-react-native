@@ -7,30 +7,30 @@
  * @format
  */
 
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import * as React from 'react';
+// import {NavigationContainer} from '@react-navigation/native';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {store} from './src/app/store';
-import {Provider} from 'react-redux';
+// import {store} from './src/app/store';
+// import {Provider} from 'react-redux';
 
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
+// import LoginPage from './pages/LoginPage';
+// import HomePage from './pages/HomePage';
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
-function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Home" component={HomePage} />
-          <Stack.Screen name="Login" component={LoginPage} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
-}
+// function App() {
+//   return (
+//     <Provider store={store}>
+//       <NavigationContainer>
+//         <Stack.Navigator initialRouteName="Login">
+//           <Stack.Screen name="Home" component={HomePage} />
+//           <Stack.Screen name="Login" component={LoginPage} />
+//         </Stack.Navigator>
+//       </NavigationContainer>
+//     </Provider>
+//   );
+// }
 
-// export {default} from './storybook';
-export default App;
+export {default} from './storybook';
+// export default App;
